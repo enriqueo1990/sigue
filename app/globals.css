@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+/* ============================================================
+   SIGUE — Tokens de diseño (paleta del mockup aprobado)
+   Para alinear con la paleta oficial de los libros (Navy +
+   Naranja Arcilla), basta con cambiar estos valores.
+   ============================================================ */
+@theme {
+  --color-papel: #f6f1e8; /* fondo principal (nunca blanco puro) */
+  --color-surface: #fcfaf5; /* superficies/tarjetas destacadas */
+  --color-ink: #211a14; /* texto principal / títulos */
+  --color-body: #4a4239; /* cuerpo de párrafos largos */
+  --color-muted: #6e6358; /* texto secundario */
+  --color-faint: #9a8c7c; /* etiquetas, metadatos */
+  --color-line: #e5dbcb; /* bordes / divisores */
+  --color-line2: #dfd3c0; /* bordes decorativos */
+  --color-accent: #c2462f; /* acento terracota */
+  --color-accent-dark: #a8381f; /* acento hover */
+  --color-night: #1e1813; /* footer oscuro */
+  --color-night-text: #a89c8c; /* texto sobre footer */
+
+  --font-sans: var(--font-hanken), system-ui, sans-serif;
+  --font-serif: var(--font-newsreader), Georgia, serif;
+}
+
+:root {
+  /* acento temable por recurso (lo sobrescriben las páginas de detalle) */
+  --accent: #c2462f;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-papel);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #c2462f;
+  color: #fff;
+}
+
+/* Tipografía de cuerpo dentro del contenido Markdown del detalle */
+.prose-sigue p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--color-body);
+  margin: 0 0 18px;
+}
+.prose-sigue p:first-child {
+  margin-top: 0;
+}

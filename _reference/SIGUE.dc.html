@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0;}
+  ::selection{background:#C2462F;color:#fff;}
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:#F6F1E8;color:#211A14;font-family:'Hanken Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased;">
+
+  <header style="position:sticky;top:0;z-index:50;background:rgba(246,241,232,0.86);backdrop-filter:blur(12px);border-bottom:1px solid #E5DBCB;">
+    <div style="max-width:1180px;margin:0 auto;padding:0 32px;height:72px;display:flex;align-items:center;justify-content:space-between;">
+      <button onClick="{{ goHome }}" style="background:none;border:none;padding:0;cursor:pointer;display:flex;align-items:center;">
+        <img src="assets/logo-sigue-negro.png" alt="SIGUE" style="height:24px;display:block;"/>
+      </button>
+      <nav style="display:flex;align-items:center;gap:30px;">
+        <button onClick="{{ goHome }}" style="background:none;border:none;font-family:inherit;font-size:14.5px;font-weight:500;color:#211A14;cursor:pointer;letter-spacing:0.01em;" style-hover="color:var(--accent,#C2462F);">Inicio</button>
+        <button onClick="{{ goAbout }}" style="background:none;border:none;font-family:inherit;font-size:14.5px;font-weight:500;color:#211A14;cursor:pointer;letter-spacing:0.01em;" style-hover="color:var(--accent,#C2462F);">Acerca de</button>
+        <button onClick="{{ goList }}" style="background:var(--accent,#C2462F);border:none;color:#fff;border-radius:4px;padding:10px 18px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;letter-spacing:0.01em;" style-hover="background:#A8381F;">Explorar recursos</button>
+        <button onClick="{{ goDonate }}" style="background:none;border:1px solid #C9BCA8;color:#211A14;border-radius:4px;padding:9px 17px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;letter-spacing:0.01em;" style-hover="border-color:#211A14;background:#211A14;color:#F6F1E8;">Donar</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===================== HOME ===================== -->
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+  <main data-screen-label="Inicio">
+
+    <section style="max-width:1180px;margin:0 auto;padding:92px 32px 84px;display:grid;grid-template-columns:1fr 430px;gap:72px;align-items:center;">
+      <div>
+        <div style="color:var(--accent,#C2462F);font-size:12px;letter-spacing:0.18em;font-weight:700;text-transform:uppercase;margin-bottom:26px;">Recursos gratuitos para la iglesia</div>
+        <h1 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(46px,6vw,78px);line-height:1.04;letter-spacing:-0.015em;margin:0;color:#211A14;">Material para seguir a Cristo, <em style="font-style:italic;color:var(--accent,#C2462F);">juntos.</em></h1>
+        <p style="font-size:19px;line-height:1.6;color:#6E6358;max-width:570px;margin:30px 0 0;">Libros cortos, guías de discipulado y estudios bíblicos semanales, pensados para grupos pequeños y para el acompañamiento uno a uno. Gratis para descargar, compartir y usar en tu iglesia.</p>
+        <div style="display:flex;gap:14px;margin-top:42px;flex-wrap:wrap;">
+          <button onClick="{{ goList }}" style="display:inline-flex;align-items:center;gap:8px;background:var(--accent,#C2462F);color:#fff;border:none;border-radius:4px;padding:15px 28px;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;" style-hover="background:#A8381F;">Explorar recursos →</button>
+          <button onClick="{{ goList }}" style="background:none;border:1px solid #D8CCB9;color:#211A14;border-radius:4px;padding:15px 26px;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;" style-hover="background:#EFE8DC;">Ver estudios bíblicos</button>
+        </div>
+      </div>
+      <div style="position:relative;align-self:stretch;min-height:540px;">
+        <div style="position:absolute;inset:-2px;border:1px solid #DFD3C0;border-radius:12px;transform:rotate(-1.6deg);"></div>
+        <img src="assets/hero-grupo.jpg" alt="Dos personas estudiando juntas la Biblia" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:11px;box-shadow:0 26px 52px -22px rgba(33,26,20,0.42);"/>
+      </div>
+    </section>
+
+    <!-- Featured -->
+    <section style="border-top:1px solid #E5DBCB;background:#FCFAF5;">
+      <div style="max-width:1180px;margin:0 auto;padding:90px 32px;display:grid;grid-template-columns:380px 1fr;gap:72px;align-items:center;">
+        <div style="position:relative;">
+          <div style="position:absolute;top:16px;left:16px;z-index:2;background:var(--accent,#C2462F);color:#fff;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:6px 12px;border-radius:3px;">Nuevo</div>
+          <img src="assets/cover-trabajo-evangelio.png" alt="Trabajo y Evangelio" style="width:100%;display:block;border-radius:6px;box-shadow:0 24px 50px -18px rgba(33,26,20,0.45);"/>
+        </div>
+        <div>
+          <div style="color:var(--accent,#C2462F);font-size:12px;letter-spacing:0.16em;font-weight:700;text-transform:uppercase;">Destacado</div>
+          <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(34px,4vw,46px);line-height:1.08;margin:14px 0 0;letter-spacing:-0.01em;">Trabajo y Evangelio</h2>
+          <p style="font-family:'Newsreader',serif;font-style:italic;font-size:21px;color:#6E6358;margin:8px 0 0;">Del Edén hasta la nueva creación</p>
+          <p style="font-size:14px;letter-spacing:0.04em;color:#9A8C7C;margin:16px 0 0;text-transform:uppercase;font-weight:600;">Por Enrique Oriolo</p>
+          <p style="font-size:17px;line-height:1.65;color:#4A4239;max-width:520px;margin:22px 0 0;">¿Por qué trabajamos? Un recorrido por la historia de la redención que muestra cómo el evangelio transforma nuestra manera de entender el trabajo diario, desde el huerto del Edén hasta la nueva creación.</p>
+          <div style="display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;">
+            <button onClick="{{ book.onOpen }}" style="display:inline-flex;align-items:center;gap:8px;background:var(--accent,#C2462F);color:#fff;border:none;border-radius:4px;padding:14px 26px;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;" style-hover="background:#A8381F;">Ver recurso →</button>
+            <a href="{{ book.pdf }}" download style="display:inline-flex;align-items:center;gap:8px;background:none;border:1px solid #D8CCB9;color:#211A14;border-radius:4px;padding:14px 24px;font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;text-decoration:none;" style-hover="background:#EFE8DC;">Descargar PDF</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Guides grid -->
+    <section style="max-width:1180px;margin:0 auto;padding:96px 32px;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:44px;flex-wrap:wrap;gap:16px;">
+        <div>
+          <div style="color:var(--accent,#C2462F);font-size:12px;letter-spacing:0.16em;font-weight:700;text-transform:uppercase;">Para grupos pequeños</div>
+          <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:38px;line-height:1.1;margin:12px 0 0;letter-spacing:-0.01em;">Estudios bíblicos</h2>
+        </div>
+        <button onClick="{{ goList }}" style="background:none;border:none;font-family:inherit;font-size:15px;font-weight:600;color:#211A14;cursor:pointer;border-bottom:1.5px solid var(--accent,#C2462F);padding:0 0 3px;" style-hover="color:var(--accent,#C2462F);">Ver todos los recursos →</button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,minmax(0,236px));justify-content:start;gap:30px;">
+        <sc-for list="{{ homeGuides }}" as="item">
+          <button onClick="{{ item.onOpen }}" style="appearance:none;background:none;border:none;padding:0;margin:0;text-align:left;cursor:pointer;display:flex;flex-direction:column;font-family:inherit;color:inherit;transition:transform .3s ease;" style-hover="transform:translateY(-5px);">
+            <div style="aspect-ratio:1/1.414;border-radius:6px;overflow:hidden;background:#EEE7DB;box-shadow:0 8px 24px -10px rgba(33,26,20,0.35);">
+              <img src="{{ item.cover }}" alt="{{ item.title }}" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+            </div>
+            <div style="color:{{ item.accent }};font-size:10.5px;letter-spacing:0.13em;font-weight:700;text-transform:uppercase;margin-top:15px;">{{ item.typeLabel }}</div>
+            <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:18px;line-height:1.22;margin:6px 0 0;color:#211A14;">{{ item.title }}</h3>
+            <p style="font-size:13.5px;line-height:1.5;color:#6E6358;margin:6px 0 0;">{{ item.desc }}</p>
+          </button>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- Quote -->
+    <sc-if value="{{ showQuote }}" hint-placeholder-val="{{ true }}">
+    <section style="background:var(--accent,#C2462F);color:#fff;padding:112px 32px;">
+      <div style="max-width:880px;margin:0 auto;text-align:center;">
+        <p style="font-family:'Newsreader',serif;font-style:italic;font-weight:400;font-size:clamp(28px,3.6vw,42px);line-height:1.32;margin:0;">«Id, pues, y haced discípulos a todas las naciones… enseñándoles que guarden todas las cosas que os he mandado.»</p>
+        <div style="font-size:13px;letter-spacing:0.2em;font-weight:700;text-transform:uppercase;margin-top:28px;opacity:0.82;">Mateo 28:19–20</div>
+      </div>
+    </section>
+    </sc-if>
+
+    <!-- How to use -->
+    <sc-if value="{{ showHowTo }}" hint-placeholder-val="{{ true }}">
+    <section style="max-width:1180px;margin:0 auto;padding:96px 32px;">
+      <div style="text-align:center;max-width:620px;margin:0 auto 56px;">
+        <div style="color:var(--accent,#C2462F);font-size:12px;letter-spacing:0.16em;font-weight:700;text-transform:uppercase;">Sencillo de empezar</div>
+        <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:38px;line-height:1.1;margin:12px 0 0;letter-spacing:-0.01em;">Cómo usar SIGUE</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:48px;">
+        <div style="border-top:1.5px solid #E5DBCB;padding-top:24px;">
+          <div style="font-family:'Newsreader',serif;font-size:34px;color:var(--accent,#C2462F);line-height:1;">01</div>
+          <h3 style="font-size:18px;font-weight:700;margin:16px 0 8px;">Elige un recurso</h3>
+          <p style="font-size:15.5px;line-height:1.6;color:#6E6358;margin:0;">Explora los libros y estudios bíblicos y descarga el que se ajuste a tu grupo.</p>
+        </div>
+        <div style="border-top:1.5px solid #E5DBCB;padding-top:24px;">
+          <div style="font-family:'Newsreader',serif;font-size:34px;color:var(--accent,#C2462F);line-height:1;">02</div>
+          <h3 style="font-size:18px;font-weight:700;margin:16px 0 8px;">Reúne tu grupo</h3>
+          <p style="font-size:15.5px;line-height:1.6;color:#6E6358;margin:0;">Cada guía está pensada para un grupo pequeño o para el discipulado uno a uno.</p>
+        </div>
+        <div style="border-top:1.5px solid #E5DBCB;padding-top:24px;">
+          <div style="font-family:'Newsreader',serif;font-size:34px;color:var(--accent,#C2462F);line-height:1;">03</div>
+          <h3 style="font-size:18px;font-weight:700;margin:16px 0 8px;">Descarga y comparte</h3>
+          <p style="font-size:15.5px;line-height:1.6;color:#6E6358;margin:0;">Imprime, reenvía y multiplica. Todo el material es gratuito para la iglesia.</p>
+        </div>
+      </div>
+    </section>
+    </sc-if>
+
+  </main>
+  </sc-if>
+
+  <!-- ===================== LISTADO ===================== -->
+  <sc-if value="{{ isList }}">
+  <main data-screen-label="Recursos" style="max-width:1180px;margin:0 auto;padding:64px 32px 100px;">
+    <div style="max-width:640px;">
+      <div style="color:var(--accent,#C2462F);font-size:12px;letter-spacing:0.16em;font-weight:700;text-transform:uppercase;">Biblioteca</div>
+      <h1 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(40px,5vw,60px);line-height:1.05;margin:14px 0 0;letter-spacing:-0.015em;">Recursos</h1>
+      <p style="font-size:18px;line-height:1.6;color:#6E6358;margin:18px 0 0;">Libros cortos y guías de discipulado producidos a partir de predicaciones y enseñanzas de pastores. Descarga gratuita en PDF.</p>
+    </div>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:40px;">
+      <sc-for list="{{ filters }}" as="f" hint-placeholder-count="3">
+        <button onClick="{{ f.onClick }}" style="{{ f.style }}">{{ f.label }}</button>
+      </sc-for>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:36px 30px;margin-top:44px;">
+      <sc-for list="{{ listItems }}" as="item">
+        <button onClick="{{ item.onOpen }}" style="appearance:none;background:none;border:none;padding:0;margin:0;text-align:left;cursor:pointer;display:flex;flex-direction:column;font-family:inherit;color:inherit;transition:transform .3s ease;" style-hover="transform:translateY(-5px);">
+          <div style="aspect-ratio:1/1.414;border-radius:6px;overflow:hidden;background:#EEE7DB;box-shadow:0 8px 24px -10px rgba(33,26,20,0.35);">
+            <img src="{{ item.cover }}" alt="{{ item.title }}" style="width:100%;height:100%;object-fit:cover;display:block;"/>
+          </div>
+          <div style="color:{{ item.accent }};font-size:11px;letter-spacing:0.14em;font-weight:700;text-transform:uppercase;margin-top:20px;">{{ item.typeLabel }}</div>
+          <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:23px;line-height:1.2;margin:8px 0 0;color:#211A14;">{{ item.title }}</h3>
+          <p style="font-size:15px;line-height:1.55;color:#6E6358;margin:8px 0 0;">{{ item.desc }}</p>
+        </button>
+      </sc-for>
+    </div>
+  </main>
+  </sc-if>
+
+  <!-- ===================== DETALLE ===================== -->
+  <sc-if value="{{ isDetail }}">
+  <main data-screen-label="Detalle de recurso" style="max-width:1180px;margin:0 auto;padding:48px 32px 100px;">
+    <button onClick="{{ goList }}" style="background:none;border:none;font-family:inherit;font-size:14px;font-weight:600;color:#6E6358;cursor:pointer;display:inline-flex;align-items:center;gap:6px;" style-hover="color:var(--accent,#C2462F);">← Volver a recursos</button>
+
+    <div style="display:grid;grid-template-columns:380px 1fr;gap:76px;margin-top:32px;align-items:start;">
+      <div style="position:sticky;top:104px;">
+        <img src="{{ detail.cover }}" alt="{{ detail.title }}" style="width:100%;display:block;border-radius:6px;box-shadow:0 24px 50px -18px rgba(33,26,20,0.45);"/>
+        <a href="{{ detail.pdf }}" download style="display:flex;align-items:center;justify-content:center;gap:8px;background:var(--accent,#C2462F);color:#fff;border:none;border-radius:4px;padding:16px;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;text-decoration:none;margin-top:24px;" style-hover="background:#A8381F;">↓ Descargar PDF</a>
+        <div style="margin-top:24px;border-top:1px solid #E5DBCB;">
+          <sc-for list="{{ detail.meta }}" as="m" hint-placeholder-count="5">
+            <div style="display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid #E5DBCB;font-size:14.5px;">
+              <span style="color:#9A8C7C;font-weight:500;">{{ m.k }}</span>
+              <span style="color:#211A14;font-weight:600;text-align:right;">{{ m.v }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div>
+        <div style="color:{{ detail.accent }};font-size:12px;letter-spacing:0.16em;font-weight:700;text-transform:uppercase;">{{ detail.typeLabel }}</div>
+        <h1 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(38px,4.6vw,56px);line-height:1.06;margin:14px 0 0;letter-spacing:-0.015em;">{{ detail.title }}</h1>
+        <p style="font-family:'Newsreader',serif;font-style:italic;font-size:22px;color:#6E6358;margin:10px 0 0;">{{ detail.subtitle }}</p>
+        <sc-if value="{{ detail.hasAuthor }}">
+          <p style="font-size:14px;letter-spacing:0.04em;color:#9A8C7C;margin:18px 0 0;text-transform:uppercase;font-weight:600;">Por {{ detail.author }}</p>
+        </sc-if>
+        <p style="font-size:18px;line-height:1.7;color:#4A4239;margin:28px 0 0;">{{ detail.p1 }}</p>
+        <p style="font-size:18px;line-height:1.7;color:#4A4239;margin:18px 0 0;">{{ detail.p2 }}</p>
+
+        <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:26px;margin:44px 0 0;">{{ detail.includesLabel }}</h2>
+        <div style="margin-top:20px;">
+          <sc-for list="{{ detail.includesNum }}" as="inc" hint-placeholder-count="5">
+            <div style="display:flex;gap:20px;align-items:baseline;padding:15px 0;border-top:1px solid #E5DBCB;">
+              <span style="font-family:'Newsreader',serif;font-size:18px;color:{{ detail.accent }};font-weight:500;min-width:28px;">{{ inc.n }}</span>
+              <span style="font-size:17px;line-height:1.5;color:#211A14;font-weight:500;">{{ inc.text }}</span>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="margin-top:44px;border-left:3px solid var(--accent,#C2462F);padding:6px 0 6px 26px;">
+          <p style="font-family:'Newsreader',serif;font-style:italic;font-size:24px;line-height:1.4;color:#211A14;margin:0;">{{ detail.quote }}</p>
+          <div style="font-size:12px;letter-spacing:0.16em;font-weight:700;text-transform:uppercase;color:#9A8C7C;margin-top:14px;">{{ detail.quoteRef }}</div>
+        </div>
+      </div>
+    </div>
+  </main>
+  </sc-if>
+
+  <!-- ===================== ACERCA DE ===================== -->
+  <sc-if value="{{ isAbout }}">
+  <main data-screen-label="Acerca de">
+    <section style="max-width:1180px;margin:0 auto;padding:84px 32px 16px;">
+      <div style="max-width:760px;">
+        <div style="color:var(--accent,#C2462F);font-size:12px;letter-spacing:0.18em;font-weight:700;text-transform:uppercase;">Acerca de SIGUE</div>
+        <h1 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(40px,5vw,64px);line-height:1.05;margin:16px 0 0;letter-spacing:-0.015em;">Recursos para hacer discípulos, al alcance de toda la iglesia.</h1>
+      </div>
+    </section>
+
+    <section style="max-width:1180px;margin:0 auto;padding:48px 32px 88px;display:grid;grid-template-columns:1fr 420px;gap:72px;align-items:start;">
+      <div>
+        <p style="font-size:19px;line-height:1.7;color:#3F382F;margin:0;">SIGUE nace de una convicción sencilla: cada creyente está llamado a seguir a Cristo y a ayudar a otros a hacer lo mismo. Por eso reunimos libros cortos, guías de discipulado y estudios bíblicos pensados para grupos pequeños y para el acompañamiento uno a uno.</p>
+        <p style="font-size:17px;line-height:1.7;color:#4A4239;margin:22px 0 0;">Todo nuestro material se produce a partir de predicaciones y enseñanzas de pastores, y se ofrece de forma gratuita para que ninguna iglesia, líder o grupo se quede sin recursos para crecer en la Palabra.</p>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:48px;">
+          <div style="border-top:1.5px solid #E5DBCB;padding-top:18px;">
+            <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:20px;margin:0;">La Palabra en el centro</h3>
+            <p style="font-size:14.5px;line-height:1.6;color:#6E6358;margin:10px 0 0;">Cada recurso conduce de vuelta a la Escritura y al evangelio.</p>
+          </div>
+          <div style="border-top:1.5px solid #E5DBCB;padding-top:18px;">
+            <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:20px;margin:0;">Para la iglesia local</h3>
+            <p style="font-size:14.5px;line-height:1.6;color:#6E6358;margin:10px 0 0;">Hecho para usarse en grupos pequeños y discipulado personal.</p>
+          </div>
+          <div style="border-top:1.5px solid #E5DBCB;padding-top:18px;">
+            <h3 style="font-family:'Newsreader',serif;font-weight:500;font-size:20px;margin:0;">Gratis para todos</h3>
+            <p style="font-size:14.5px;line-height:1.6;color:#6E6358;margin:10px 0 0;">Descarga, imprime y comparte sin costo ni restricciones.</p>
+          </div>
+        </div>
+        <div style="margin-top:44px;background:#FCFAF5;border:1px solid #E5DBCB;border-radius:8px;padding:30px 32px;">
+          <p style="font-family:'Newsreader',serif;font-style:italic;font-size:22px;line-height:1.4;margin:0;color:#211A14;">El nombre lo dice todo: <span style="color:var(--accent,#C2462F);">SIGUE</span>. La marca une la cruz con una flecha, porque seguir a Jesús es avanzar tras Él, un paso a la vez.</p>
+        </div>
+      </div>
+      <div style="position:relative;align-self:stretch;min-height:520px;">
+        <div style="position:absolute;inset:-2px;border:1px solid #DFD3C0;border-radius:12px;transform:rotate(1.4deg);"></div>
+        <img src="assets/about-estudio.jpg" alt="Persona estudiando la Biblia y tomando notas" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:11px;box-shadow:0 26px 52px -22px rgba(33,26,20,0.42);"/>
+      </div>
+    </section>
+
+    <section style="background:var(--accent,#C2462F);color:#fff;">
+      <div style="max-width:1180px;margin:0 auto;padding:72px 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:28px;">
+        <div style="max-width:560px;">
+          <h2 style="font-family:'Newsreader',serif;font-weight:500;font-size:34px;line-height:1.15;margin:0;">Estos recursos son gratuitos porque alguien los sostiene.</h2>
+          <p style="font-size:16.5px;line-height:1.6;margin:14px 0 0;opacity:0.92;">Tu ofrenda hace posible producir, editar y traducir más material para la iglesia.</p>
+        </div>
+        <button onClick="{{ goDonate }}" style="background:#fff;color:var(--accent,#C2462F);border:none;border-radius:4px;padding:16px 32px;font-family:inherit;font-size:16px;font-weight:700;cursor:pointer;white-space:nowrap;" style-hover="background:#F6F1E8;">Apoyar la obra →</button>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <!-- ===================== DONAR ===================== -->
+  <sc-if value="{{ isDonate }}">
+  <main data-screen-label="Donar" style="max-width:760px;margin:0 auto;padding:84px 32px 100px;text-align:center;">
+    <div style="color:var(--accent,#C2462F);font-size:12px;letter-spacing:0.18em;font-weight:700;text-transform:uppercase;">Apoya la obra</div>
+    <h1 style="font-family:'Newsreader',serif;font-weight:500;font-size:clamp(38px,4.8vw,58px);line-height:1.07;margin:16px 0 0;letter-spacing:-0.015em;">Tu ofrenda multiplica estos recursos.</h1>
+    <p style="font-size:18px;line-height:1.7;color:#4A4239;margin:24px auto 0;max-width:560px;">Todo el material de SIGUE es y seguirá siendo gratuito. Las donaciones cubren la producción, edición y traducción de nuevos libros y estudios para la iglesia hispanohablante.</p>
+
+    <div style="background:#FCFAF5;border:1px solid #E5DBCB;border-radius:10px;padding:36px;margin-top:44px;text-align:left;">
+      <div style="font-size:13px;letter-spacing:0.04em;text-transform:uppercase;font-weight:700;color:#9A8C7C;">Elige un monto</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px;">
+        <sc-for list="{{ amounts }}" as="a" hint-placeholder-count="4">
+          <button onClick="{{ a.onClick }}" style="{{ a.style }}">{{ a.label }}</button>
+        </sc-for>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;margin-top:14px;">
+        <button onClick="{{ setFrequency }}" style="{{ freqStyle }}">{{ freqLabel }}</button>
+        <span style="font-size:14px;color:#6E6358;">Toca para alternar entre donación única y mensual.</span>
+      </div>
+      <a href="#" style="display:flex;align-items:center;justify-content:center;gap:8px;background:var(--accent,#C2462F);color:#fff;border:none;border-radius:5px;padding:17px;font-family:inherit;font-size:17px;font-weight:700;cursor:pointer;text-decoration:none;margin-top:24px;" style-hover="background:#A8381F;">{{ donateLabel }}</a>
+      <p style="font-size:13px;color:#9A8C7C;text-align:center;margin:16px 0 0;">Donación segura · SIGUE es un ministerio sin fines de lucro</p>
+    </div>
+
+    <p style="font-size:15px;line-height:1.6;color:#6E6358;margin-top:32px;">¿Prefieres donar por transferencia o apoyar de otra forma? <span style="color:#211A14;font-weight:600;">Contáctanos</span> y con gusto te orientamos.</p>
+  </main>
+  </sc-if>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer style="background:#1E1813;color:#A89C8C;padding:64px 0 44px;">
+    <div style="max-width:1180px;margin:0 auto;padding:0 32px;">
+      <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:36px;">
+        <div style="max-width:340px;">
+          <img src="assets/logo-sigue-blanco.png" alt="SIGUE" style="height:24px;display:block;"/>
+          <p style="font-size:14.5px;line-height:1.65;margin:20px 0 0;color:#A89C8C;">Recursos gratuitos de discipulado para la iglesia. Producidos a partir de predicaciones y enseñanzas de pastores.</p>
+        </div>
+        <div style="display:flex;gap:64px;flex-wrap:wrap;">
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#6E6358;font-weight:700;margin-bottom:4px;">Navegar</div>
+            <button onClick="{{ goHome }}" style="background:none;border:none;font-family:inherit;font-size:14.5px;color:#D8CFC2;cursor:pointer;text-align:left;padding:0;" style-hover="color:#fff;">Inicio</button>
+            <button onClick="{{ goList }}" style="background:none;border:none;font-family:inherit;font-size:14.5px;color:#D8CFC2;cursor:pointer;text-align:left;padding:0;" style-hover="color:#fff;">Recursos</button>
+            <button onClick="{{ goAbout }}" style="background:none;border:none;font-family:inherit;font-size:14.5px;color:#D8CFC2;cursor:pointer;text-align:left;padding:0;" style-hover="color:#fff;">Acerca de</button>
+            <button onClick="{{ goDonate }}" style="background:none;border:none;font-family:inherit;font-size:14.5px;color:#D8CFC2;cursor:pointer;text-align:left;padding:0;" style-hover="color:#fff;">Donar</button>
+          </div>
+        </div>
+      </div>
+      <div style="border-top:1px solid #3A322A;margin-top:44px;padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;color:#6E6358;">
+        <span>© 2026 SIGUE</span>
+        <span>Hecho para la iglesia · Gratis para compartir</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#C2462F&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;showQuote&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;showHowTo&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { view: 'home', filter: 'todos', detailId: 'trabajo-evangelio', amount: 25, monthly: false };
+
+  componentDidMount() { this._applyAccent(); }
+  componentDidUpdate() { this._applyAccent(); }
+  _applyAccent() {
+    const a = this.props.accent;
+    if (a && typeof document !== 'undefined') document.documentElement.style.setProperty('--accent', a);
+  }
+
+  go(view, extra) {
+    this.setState(Object.assign({ view }, extra || {}));
+    if (typeof window !== 'undefined') { try { window.scrollTo(0, 0); } catch (e) {} }
+  }
+
+  resources() {
+    return [
+      {
+        id: 'trabajo-evangelio',
+        title: 'Trabajo y Evangelio',
+        subtitle: 'Del Edén hasta la nueva creación',
+        typeLabel: 'Libro corto',
+        type: 'Libro',
+        category: 'Libro corto',
+        author: 'Enrique Oriolo',
+        cover: 'assets/cover-trabajo-evangelio.png',
+        accent: '#C2462F',
+        pdf: 'assets/cover-trabajo-evangelio.png',
+        pagesNum: '48',
+        desc: 'Una mirada bíblica al trabajo: del huerto del Edén, pasando por la caída, hasta la nueva creación.',
+        p1: '¿Por qué trabajamos? La Biblia presenta el trabajo no como una consecuencia de la caída, sino como parte del buen diseño de Dios desde el principio. Este libro corto recorre la historia de la redención para mostrar cómo el evangelio transforma nuestra manera de entender el trabajo diario.',
+        p2: 'Pensado para leerse en una semana o estudiarse en grupo, cada capítulo termina con preguntas para la reflexión personal y la conversación.',
+        includes: ['El trabajo en el Edén', 'El trabajo bajo la maldición', 'Cristo, Señor de nuestro trabajo', 'Trabajar para la nueva creación', 'Guía de discusión en grupo'],
+        quote: '«Y todo lo que hagáis, hacedlo de corazón, como para el Señor y no para los hombres.»',
+        quoteRef: 'Colosenses 3:23'
+      },
+      {
+        id: 'discipulos',
+        title: 'Discípulos de Cristo',
+        subtitle: 'Cinco estudios bíblicos para grupos pequeños',
+        typeLabel: 'Estudio bíblico',
+        type: 'Estudio',
+        category: 'Estudio bíblico',
+        author: null,
+        cover: 'assets/cover-discipulos.png',
+        accent: '#A6802F',
+        pdf: 'assets/discipulos-de-cristo.pdf',
+        pagesNum: '24',
+        desc: 'Cinco estudios para descubrir qué significa seguir a Jesús y ser formados como sus discípulos.',
+        p1: 'Seguir a Cristo es más que una decisión: es una vida entera de aprendizaje, obediencia y comunión. Estos cinco estudios guían a tu grupo a través de los textos clave sobre el discipulado, con preguntas pensadas para abrir la Palabra juntos y aplicarla al corazón.',
+        p2: 'Cada sesión incluye lectura bíblica, preguntas de observación y aplicación, y una breve guía para el facilitador.',
+        includes: ['Llamados a seguir', 'Contar el costo', 'Permanecer en su Palabra', 'Amar como Él nos amó', 'Id y haced discípulos'],
+        quote: '«Sígueme.»',
+        quoteRef: 'Mateo 9:9'
+      },
+      {
+        id: 'oracion',
+        title: 'Vida de Oración',
+        subtitle: 'Cinco estudios bíblicos para grupos pequeños',
+        typeLabel: 'Estudio bíblico',
+        type: 'Estudio',
+        category: 'Estudio bíblico',
+        author: null,
+        cover: 'assets/cover-oracion.png',
+        accent: '#B23A0E',
+        pdf: 'assets/vida-de-oracion.pdf',
+        pagesNum: '24',
+        desc: 'Cinco estudios para cultivar una vida de oración constante, bíblica y centrada en el evangelio.',
+        p1: 'La oración es el respiro del alma cristiana y, sin embargo, a menudo nos resulta difícil. Esta guía acompaña a tu grupo a redescubrir la oración a la luz de la Escritura: cómo nos enseñó a orar el Señor, qué pedir y cómo perseverar.',
+        p2: 'Ideal para grupos pequeños o para el discipulado uno a uno, con preguntas que invitan a orar juntos.',
+        includes: ['Señor, enséñanos a orar', 'El Padre que escucha', 'Persistir sin desmayar', 'Orar con la Escritura', 'Interceder por otros'],
+        quote: '«Orad sin cesar.»',
+        quoteRef: '1 Tesalonicenses 5:17'
+      },
+      {
+        id: 'prioridades',
+        title: 'Prioridades',
+        subtitle: 'Cinco estudios bíblicos para grupos pequeños',
+        typeLabel: 'Estudio bíblico',
+        type: 'Estudio',
+        category: 'Estudio bíblico',
+        author: null,
+        cover: 'assets/cover-prioridades.png',
+        accent: '#1187A8',
+        pdf: 'assets/prioridades.pdf',
+        pagesNum: '24',
+        desc: 'Cinco estudios sobre el corazón, el tiempo y el tesoro: buscar primero el reino de Dios.',
+        p1: '¿Qué ocupa el primer lugar en nuestra vida? Jesús nos llama a buscar primero el reino de Dios y su justicia. Estos estudios ayudan a tu grupo a examinar sus prioridades a la luz del evangelio y a reordenar la vida en torno a lo que de verdad permanece.',
+        p2: 'Pensado para cinco semanas de conversación honesta y aplicación práctica.',
+        includes: ['Buscad primero el reino', 'El tesoro del corazón', 'Tiempo y eternidad', 'Trabajo y descanso', 'Una sola cosa es necesaria'],
+        quote: '«Buscad primero el reino de Dios y su justicia.»',
+        quoteRef: 'Mateo 6:33'
+      }
+    ];
+  }
+
+  renderVals() {
+    const all = this.resources().map((r) => Object.assign({}, r, { onOpen: () => this.go('detail', { detailId: r.id }) }));
+    const book = all.find((r) => r.id === 'trabajo-evangelio');
+    const guides = all.filter((r) => r.type === 'Estudio');
+    const filter = this.state.filter;
+    const listItems = all.filter((r) => filter === 'todos' ? true : filter === 'libros' ? r.type === 'Libro' : r.type === 'Estudio');
+
+    const filters = [['todos', 'Todos'], ['libros', 'Libros'], ['estudios', 'Estudios bíblicos']].map((p) => {
+      const active = this.state.filter === p[0];
+      return {
+        key: p[0], label: p[1],
+        onClick: () => this.setState({ filter: p[0] }),
+        style: 'padding:9px 18px;border-radius:999px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;' +
+          (active ? 'background:#211A14;color:#F6F1E8;border:1px solid #211A14;' : 'background:transparent;color:#6E6358;border:1px solid #E5DBCB;')
+      };
+    });
+
+    const d = all.find((r) => r.id === this.state.detailId) || book;
+    const meta = [
+      { k: 'Formato', v: 'PDF' },
+      { k: 'Páginas', v: d.pagesNum },
+      { k: 'Categoría', v: d.category },
+      { k: 'Idioma', v: 'Español' }
+    ];
+    if (d.author) meta.push({ k: 'Autor', v: d.author });
+    const detail = Object.assign({}, d, {
+      meta,
+      hasAuthor: !!d.author,
+      includesLabel: d.type === 'Libro' ? 'Contenido del libro' : 'Lo que incluye',
+      includesNum: d.includes.map((t, i) => ({ n: ('0' + (i + 1)).slice(-2), text: t }))
+    });
+
+    const amounts = [10, 25, 50, 100].map((v) => {
+      const active = this.state.amount === v;
+      return {
+        value: v, label: '$' + v,
+        onClick: () => this.setState({ amount: v }),
+        style: 'padding:16px 0;border-radius:6px;font-family:inherit;font-size:18px;font-weight:700;cursor:pointer;transition:all .15s;' +
+          (active ? 'background:var(--accent,#C2462F);color:#fff;border:1px solid var(--accent,#C2462F);' : 'background:#fff;color:#211A14;border:1px solid #E0D6C6;')
+      };
+    });
+
+    return {
+      isHome: this.state.view === 'home',
+      isList: this.state.view === 'list',
+      isDetail: this.state.view === 'detail',
+      isAbout: this.state.view === 'about',
+      isDonate: this.state.view === 'donate',
+      goHome: () => this.go('home'),
+      goList: () => this.go('list', { filter: 'todos' }),
+      goAbout: () => this.go('about'),
+      goDonate: () => this.go('donate'),
+      amounts,
+      setFrequency: () => this.setState((s) => ({ monthly: !s.monthly })),
+      freqLabel: this.state.monthly ? 'Mensual' : 'Una vez',
+      freqStyle: 'padding:9px 16px;border-radius:999px;font-family:inherit;font-size:13.5px;font-weight:700;cursor:pointer;border:1px solid ' +
+        (this.state.monthly ? 'var(--accent,#C2462F);background:var(--accent,#C2462F);color:#fff;' : '#211A14;background:#211A14;color:#F6F1E8;'),
+      donateLabel: 'Donar $' + this.state.amount + (this.state.monthly ? ' al mes' : ''),
+      book,
+      homeGuides: guides,
+      listItems,
+      filters,
+      detail,
+      showHowTo: this.props.showHowTo !== false,
+      showQuote: this.props.showQuote !== false
+    };
+  }
+}
+</script>
+</body>
+</html>
