@@ -55,6 +55,43 @@ export default function AcercaPage() {
             Palabra.
           </p>
 
+          <div className="mt-10 border-t border-line pt-8">
+            <div className="text-xs font-bold uppercase tracking-[0.16em] text-accent">
+              Basado en las enseñanzas de
+            </div>
+            <div className="mt-5 grid gap-x-7 gap-y-6 sm:grid-cols-2">
+              <div>
+                <h3 className="font-serif text-xl font-medium text-ink">
+                  Pastor Enrique Oriolo
+                </h3>
+                <a
+                  href="https://ibdelagracia.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-1 inline-block text-[15px] text-muted underline-offset-2 transition-colors hover:text-accent hover:underline"
+                >
+                  Iglesia Bíblica de la Gracia ↗
+                </a>
+              </div>
+              <div>
+                <h3 className="font-serif text-xl font-medium text-ink">
+                  Pastor Ricardo Daglio
+                </h3>
+                <p className="mt-1 text-[15px] leading-relaxed text-muted">
+                  Iglesia Bíblica de Villa Regina y{" "}
+                  <a
+                    href="https://ibgeneralroca.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline-offset-2 transition-colors hover:text-accent hover:underline"
+                  >
+                    Iglesia Bíblica de General Roca ↗
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+
           <div className="mt-12 grid gap-7 sm:grid-cols-3">
             {values.map((v) => (
               <div key={v.t} className="border-t-[1.5px] border-line pt-[18px]">
