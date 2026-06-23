@@ -35,9 +35,10 @@ consola). Para activar las integraciones, copia `.env.example` a `.env.local` y 
 
 1. Crea `content/recursos/<slug>.md` con el frontmatter (mira los existentes como modelo).
 2. Coloca la portada en `public/covers/` y el PDF en `public/pdfs/`.
-3. Listo: aparece en el catálogo, se genera su página `/recursos/<slug>` y entra al sitemap.
-
-No hace falta tocar código ni base de datos.
+3. Agrégalo a la lista `RESOURCES` en `scripts/generate-og.py` y corre
+   `python3 scripts/generate-og.py` para crear su tarjeta social (Open Graph 1200×630).
+4. Listo: aparece en el catálogo, se genera su página `/recursos/<slug>`, su tarjeta
+   para compartir y entra al sitemap.
 
 ## Estructura
 
