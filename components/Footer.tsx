@@ -1,5 +1,4 @@
 import Link from "next/link";
-import NewsletterForm from "./NewsletterForm";
 
 const footerLinks = [
   { href: "/", label: "Inicio" },
@@ -20,12 +19,9 @@ export default function Footer() {
               Recursos gratuitos de discipulado para la iglesia. Producidos a
               partir de predicaciones y enseñanzas de pastores.
             </p>
-            <div className="mt-7">
-              <div className="mb-3 text-xs font-bold uppercase tracking-[0.14em] text-[#6e6358]">
-                Recibe los nuevos recursos
-              </div>
-              <NewsletterForm />
-            </div>
+            {/* Newsletter: pendiente para fase 2. Para reactivarlo, volver a importar
+                y renderizar <NewsletterForm /> (el componente y la API /api/suscribir
+                siguen en el repo). */}
           </div>
 
           <div className="flex flex-col gap-3">
