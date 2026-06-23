@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { Resource } from "./resources";
 
 export const SITE_URL = "https://siguerecursos.com";
 export const SITE_NAME = "SIGUE";
@@ -41,5 +42,72 @@ export function socialMeta({
       description,
       images: [image],
     },
+  };
+}
+
+/* ───────────────────────── Datos estructurados (JSON-LD) ───────────────────────── */
+
+export function organizationLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: SITE_NAME,
+    url: SITE_URL,
+    logo: `${SITE_URL}/icon.png`,
+    description: SITE_DESCRIPTION,
+  };
+}
+
+export function websiteLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE_NAME,
+    url: SITE_URL,
+    inLanguage: "es",
+    description: SITE_DESCRIPTION,
+  };
+}
+
+export function bookLd(resource: Resource) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    name: resource.title,
+    ...(resource.subtitle ? { alternativeHeadline: resource.subtitle } : {}),
+    description: resource.desc,
+    url: `${SITE_URL}/recursos/${resource.slug}`,
+    image: `${SITE_URL}${resource.cover}`,
+    inLanguage: "es",
+    isAccessibleForFree: true,
+    bookFormat: "https://schema.org/EBook",
+    ...(resource.pages ? { numberOfPages: resource.pages } : {}),
+    ...(resource.category ? { genre: resource.category } : {}),
+    author: resource.author
+      ? { "@type": "Person", name: resource.author }
+      : { "@type": "Organization", name: SITE_NAME },
+    publisher: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
+  };
+}
+
+export function breadcrumbLd(resource: Resource) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Inicio", item: SITE_URL },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Recursos",
+        item: `${SITE_URL}/recursos`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: resource.title,
+        item: `${SITE_URL}/recursos/${resource.slug}`,
+      },
+    ],
   };
 }

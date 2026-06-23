@@ -6,7 +6,8 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { getAllResources, getResource } from "@/lib/resources";
 import DownloadCount from "@/components/DownloadCount";
-import { socialMeta } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
+import { socialMeta, bookLd, breadcrumbLd } from "@/lib/seo";
 
 export function generateStaticParams() {
   return getAllResources().map((r) => ({ slug: r.slug }));
@@ -54,6 +55,8 @@ export default async function ResourceDetailPage({
 
   return (
     <main className="mx-auto max-w-[1180px] px-5 pb-24 pt-12 sm:px-8">
+      <JsonLd data={bookLd(resource)} />
+      <JsonLd data={breadcrumbLd(resource)} />
       <Link
         href="/recursos"
         className="inline-flex items-center gap-1.5 text-sm font-semibold text-muted transition-colors hover:text-accent"

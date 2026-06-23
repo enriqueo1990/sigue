@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Newsreader, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { socialMeta, SITE_URL, SITE_DESCRIPTION } from "@/lib/seo";
+import JsonLd from "@/components/JsonLd";
+import { socialMeta, SITE_URL, SITE_DESCRIPTION, organizationLd, websiteLd } from "@/lib/seo";
 
 const newsreader = Newsreader({
   subsets: ["latin"],
@@ -42,6 +43,10 @@ export const metadata: Metadata = {
   }),
 };
 
+export const viewport: Viewport = {
+  themeColor: "#f6f1e8",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -51,6 +56,8 @@ export default function RootLayout({
         <Header />
         <div className="flex-1">{children}</div>
         <Footer />
+        <JsonLd data={organizationLd()} />
+        <JsonLd data={websiteLd()} />
       </body>
     </html>
   );
