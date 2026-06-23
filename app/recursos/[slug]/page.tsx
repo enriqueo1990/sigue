@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { getAllResources, getResource } from "@/lib/resources";
+import DownloadCount from "@/components/DownloadCount";
 
 export function generateStaticParams() {
   return getAllResources().map((r) => ({ slug: r.slug }));
@@ -85,6 +86,8 @@ export default async function ResourceDetailPage({
               Descargar EPUB
             </a>
           )}
+
+          <DownloadCount slug={resource.slug} />
 
           <div className="mt-6 border-t border-line">
             {meta.map((m) => (
