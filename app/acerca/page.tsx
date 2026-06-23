@@ -1,11 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import { socialMeta } from "@/lib/seo";
+
+const DESCRIPTION =
+  "SIGUE reúne libros cortos, guías de discipulado y estudios bíblicos gratuitos para grupos pequeños y la iglesia hispanohablante.";
 
 export const metadata: Metadata = {
   title: "Acerca de",
-  description:
-    "SIGUE reúne libros cortos, guías de discipulado y estudios bíblicos gratuitos para grupos pequeños y la iglesia hispanohablante.",
+  description: DESCRIPTION,
+  ...socialMeta({
+    title: "Acerca de · SIGUE",
+    description: DESCRIPTION,
+    path: "/acerca",
+  }),
 };
 
 const values = [

@@ -3,6 +3,7 @@ import { Newsreader, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { socialMeta, SITE_URL, SITE_DESCRIPTION } from "@/lib/seo";
 
 const newsreader = Newsreader({
   subsets: ["latin"],
@@ -20,13 +21,12 @@ const hanken = Hanken_Grotesk({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://siguerecursos.com"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "SIGUE — Recursos cristianos gratuitos",
     template: "%s · SIGUE",
   },
-  description:
-    "Libros cortos, guías de discipulado y estudios bíblicos gratuitos en PDF, pensados para grupos pequeños y la iglesia local.",
+  description: SITE_DESCRIPTION,
   keywords: [
     "estudios bíblicos",
     "grupos pequeños",
@@ -35,15 +35,11 @@ export const metadata: Metadata = {
     "PDF gratis",
     "iglesia",
   ],
-  openGraph: {
-    type: "website",
-    locale: "es_ES",
-    siteName: "SIGUE",
+  ...socialMeta({
     title: "SIGUE — Recursos cristianos gratuitos",
-    description:
-      "Libros cortos y estudios bíblicos gratuitos en PDF para grupos pequeños y la iglesia local.",
-    url: "https://siguerecursos.com",
-  },
+    description: SITE_DESCRIPTION,
+    path: "/",
+  }),
 };
 
 export default function RootLayout({

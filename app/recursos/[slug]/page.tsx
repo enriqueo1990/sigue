@@ -6,6 +6,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { getAllResources, getResource } from "@/lib/resources";
 import DownloadCount from "@/components/DownloadCount";
+import { socialMeta } from "@/lib/seo";
 
 export function generateStaticParams() {
   return getAllResources().map((r) => ({ slug: r.slug }));
@@ -22,11 +23,12 @@ export async function generateMetadata({
   return {
     title: resource.title,
     description: resource.desc,
-    openGraph: {
+    ...socialMeta({
       title: `${resource.title} · SIGUE`,
       description: resource.desc,
-      images: [{ url: resource.cover }],
-    },
+      path: `/recursos/${resource.slug}`,
+      image: `/og/recursos/${resource.slug}.png`,
+    }),
   };
 }
 

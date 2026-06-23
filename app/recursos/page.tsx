@@ -1,11 +1,19 @@
 import type { Metadata } from "next";
 import CatalogClient from "@/components/CatalogClient";
 import { getAllResources } from "@/lib/resources";
+import { socialMeta } from "@/lib/seo";
+
+const DESCRIPTION =
+  "Biblioteca de libros cortos y guías de discipulado en PDF, gratis para grupos pequeños y la iglesia local.";
 
 export const metadata: Metadata = {
   title: "Recursos",
-  description:
-    "Biblioteca de libros cortos y guías de discipulado en PDF, gratis para grupos pequeños y la iglesia local.",
+  description: DESCRIPTION,
+  ...socialMeta({
+    title: "Recursos · SIGUE",
+    description: DESCRIPTION,
+    path: "/recursos",
+  }),
 };
 
 export default function RecursosPage() {
