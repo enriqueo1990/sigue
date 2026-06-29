@@ -6,7 +6,7 @@ typeLabel: "Libro corto"
 author: "Enrique Oriolo"
 accent: "#C2462F"
 cover: "/covers/cover-trabajo-evangelio.png"
-pdf: "/pdfs/trabajo-evangelio.pdf"
+pdf: "/pdfs/trabajo-y-evangelio.pdf"
 epub: "/epub/trabajo-y-evangelio.epub"
 pages: 48
 category: "Libro corto"
