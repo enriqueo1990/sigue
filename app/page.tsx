@@ -5,7 +5,7 @@ import { getFeaturedResource, getResourcesByType } from "@/lib/resources";
 
 export default function HomePage() {
   const featured = getFeaturedResource();
-  const guides = getResourcesByType("Estudio");
+  const guides = getResourcesByType("Estudio").slice(0, 4);
 
   return (
     <main>
@@ -129,7 +129,7 @@ export default function HomePage() {
             Ver todos los recursos →
           </Link>
         </div>
-        <div className="grid grid-cols-2 gap-x-7 gap-y-9 sm:grid-cols-3">
+        <div className="grid grid-cols-2 gap-x-7 gap-y-9 sm:grid-cols-4">
           {guides.map((r) => (
             <ResourceCard key={r.slug} resource={r} />
           ))}
