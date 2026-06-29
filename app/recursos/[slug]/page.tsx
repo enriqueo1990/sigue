@@ -4,7 +4,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { getAllResources, getResource } from "@/lib/resources";
+import { getAllResources, getResource, getSeriesResources } from "@/lib/resources";
 import DownloadCount from "@/components/DownloadCount";
 import JsonLd from "@/components/JsonLd";
 import { socialMeta, bookLd, breadcrumbLd } from "@/lib/seo";
@@ -41,6 +41,12 @@ export default async function ResourceDetailPage({
   const { slug } = await params;
   const resource = getResource(slug);
   if (!resource) notFound();
+
+  const seriesParts = resource.series
+    ? getSeriesResources(resource.series)
+    : [];
+  const inSeries = seriesParts.length > 1;
+  const seriesIndex = seriesParts.findIndex((r) => r.slug === resource.slug);
 
   const includesLabel =
     resource.type === "Libro" ? "Contenido del libro" : "Lo que incluye";
@@ -114,6 +120,9 @@ export default async function ResourceDetailPage({
             style={{ color: resource.accent }}
           >
             {resource.typeLabel}
+            {inSeries && (
+              <> · Parte {seriesIndex + 1} de {seriesParts.length}</>
+            )}
           </div>
           <h1
             className="mt-3.5 font-serif font-medium leading-[1.06] tracking-[-0.015em] text-ink"
@@ -172,6 +181,65 @@ export default async function ResourceDetailPage({
               </p>
               <div className="mt-3.5 text-xs font-bold uppercase tracking-[0.16em] text-faint">
                 {resource.quoteRef}
+              </div>
+            </div>
+          )}
+
+          {inSeries && (
+            <div className="mt-12 border-t border-line pt-9">
+              <div className="text-xs font-bold uppercase tracking-[0.16em] text-faint">
+                Serie en {seriesParts.length} partes
+              </div>
+              <h2 className="mt-2 font-serif text-[26px] font-medium text-ink">
+                {resource.series}
+              </h2>
+              <div className="mt-5 flex flex-col gap-2.5">
+                {seriesParts.map((part, i) => {
+                  const current = part.slug === resource.slug;
+                  const inner = (
+                    <>
+                      <span
+                        className="min-w-7 font-serif text-lg font-medium"
+                        style={{ color: part.accent }}
+                      >
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <div className="relative h-[64px] w-[46px] shrink-0 overflow-hidden rounded bg-[#eee7db]">
+                        <Image
+                          src={part.cover}
+                          alt=""
+                          fill
+                          sizes="46px"
+                          className="object-cover"
+                        />
+                      </div>
+                      <div className="min-w-0">
+                        <div className="font-serif text-[18px] font-medium leading-snug text-ink">
+                          {part.title}
+                        </div>
+                        <div className="mt-0.5 truncate text-sm text-muted">
+                          {current ? "Estás leyendo este estudio" : part.subtitle}
+                        </div>
+                      </div>
+                    </>
+                  );
+                  return current ? (
+                    <div
+                      key={part.slug}
+                      className="flex items-center gap-4 rounded-md border border-accent bg-surface px-3.5 py-3"
+                    >
+                      {inner}
+                    </div>
+                  ) : (
+                    <Link
+                      key={part.slug}
+                      href={`/recursos/${part.slug}`}
+                      className="flex items-center gap-4 rounded-md border border-line px-3.5 py-3 transition-colors hover:border-faint hover:bg-surface"
+                    >
+                      {inner}
+                    </Link>
+                  );
+                })}
               </div>
             </div>
           )}

@@ -19,6 +19,8 @@ export interface Resource {
   category: string;
   featured: boolean;
   order: number;
+  series: string | null;
+  seriesOrder: number;
   desc: string;
   includes: string[];
   quote: string;
@@ -51,6 +53,8 @@ export function getAllResources(): Resource[] {
       category: data.category ?? "",
       featured: Boolean(data.featured),
       order: Number(data.order ?? 99),
+      series: data.series ?? null,
+      seriesOrder: Number(data.seriesOrder ?? 0),
       desc: data.desc ?? "",
       includes: data.includes ?? [],
       quote: data.quote ?? "",
@@ -73,4 +77,10 @@ export function getFeaturedResource(): Resource {
 
 export function getResourcesByType(type: ResourceType): Resource[] {
   return getAllResources().filter((r) => r.type === type);
+}
+
+export function getSeriesResources(series: string): Resource[] {
+  return getAllResources()
+    .filter((r) => r.series === series)
+    .sort((a, b) => a.seriesOrder - b.seriesOrder);
 }

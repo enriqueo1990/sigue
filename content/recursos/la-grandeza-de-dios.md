@@ -9,6 +9,8 @@ pdf: "/pdfs/la-grandeza-de-dios.pdf"
 pages: 21
 category: "Estudio bíblico"
 order: 6
+series: "Los atributos de Dios"
+seriesOrder: 2
 desc: "Seis estudios sobre los atributos de la grandeza de Dios: su santidad, omnipresencia, omnisciencia, omnipotencia, inmutabilidad y veracidad."
 includes:
   - "La santidad de Dios"

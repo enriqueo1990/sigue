@@ -9,6 +9,8 @@ pdf: "/pdfs/conocer-a-dios.pdf"
 pages: 18
 category: "Estudio bíblico"
 order: 5
+series: "Los atributos de Dios"
+seriesOrder: 1
 desc: "Cinco estudios sobre los atributos de Dios: quién es Él, cómo se revela, y qué significa conocerlo de verdad."
 includes:
   - "Introducción: Los atributos de Dios"

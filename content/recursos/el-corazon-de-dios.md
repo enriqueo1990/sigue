@@ -9,6 +9,8 @@ pdf: "/pdfs/el-corazon-de-dios.pdf"
 pages: 21
 category: "Estudio bíblico"
 order: 7
+series: "Los atributos de Dios"
+seriesOrder: 3
 desc: "Seis estudios sobre los atributos que revelan el corazón de Dios: su sabiduría, su ira, su bondad, su gracia, su amor y la Trinidad."
 includes:
   - "La sabiduría de Dios"
