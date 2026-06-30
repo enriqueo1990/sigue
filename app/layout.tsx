@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
 import { socialMeta, SITE_URL, SITE_DESCRIPTION, organizationLd, websiteLd } from "@/lib/seo";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const newsreader = Newsreader({
   subsets: ["latin"],
@@ -58,6 +59,7 @@ export default function RootLayout({
         <Footer />
         <JsonLd data={organizationLd()} />
         <JsonLd data={websiteLd()} />
+        <SpeedInsights />
       </body>
     </html>
   );
