@@ -34,3 +34,25 @@ export async function getDownloadCount(slug: string): Promise<number | null> {
     return null;
   }
 }
+
+/**
+ * Lee de una sola vez el contador de varios recursos. Devuelve un mapa
+ * slug → descargas, o null si Upstash no está configurado o falla.
+ */
+export async function getDownloadCounts(
+  slugs: string[],
+): Promise<Record<string, number> | null> {
+  const redis = getRedis();
+  if (!redis || slugs.length === 0) return null;
+  try {
+    const keys = slugs.map((s) => `downloads:${s}`);
+    const values = await redis.mget<(number | null)[]>(...keys);
+    const out: Record<string, number> = {};
+    slugs.forEach((s, i) => {
+      out[s] = values[i] ?? 0;
+    });
+    return out;
+  } catch {
+    return null;
+  }
+}
