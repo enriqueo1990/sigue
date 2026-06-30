@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CONTACT_EMAIL } from "@/lib/seo";
 
 const footerLinks = [
   { href: "/", label: "Inicio" },
@@ -37,6 +38,21 @@ export default function Footer() {
                 {l.label}
               </Link>
             ))}
+          </div>
+
+          <div className="flex flex-col gap-3">
+            <div className="mb-1 text-xs font-bold uppercase tracking-[0.14em] text-[#6e6358]">
+              Contacto
+            </div>
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="text-[14.5px] text-[#d8cfc2] transition-colors hover:text-white"
+            >
+              {CONTACT_EMAIL}
+            </a>
+            <p className="max-w-[220px] text-[13.5px] leading-relaxed text-[#6e6358]">
+              ¿Dudas, sugerencias o quieres aportar un recurso? Escríbenos.
+            </p>
           </div>
         </div>
 

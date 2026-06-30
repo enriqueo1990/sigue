@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { CONTACT_EMAIL } from "@/lib/seo";
 
 const amounts = [10, 25, 50, 100];
+const MAILTO = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Quiero apoyar a SIGUE")}`;
 
 export default function DonarClient() {
   const [amount, setAmount] = useState(25);
@@ -75,8 +77,13 @@ export default function DonarClient() {
         {showNotice && (
           <div className="mt-4 rounded-md border border-line bg-papel px-4 py-3 text-center text-sm text-body">
             Estamos habilitando las donaciones en línea. Mientras tanto,{" "}
-            <span className="font-semibold text-ink">escríbenos</span> y con gusto
-            coordinamos tu ofrenda. ¡Gracias por tu apoyo!
+            <a
+              href={MAILTO}
+              className="font-semibold text-accent underline-offset-2 hover:underline"
+            >
+              escríbenos
+            </a>{" "}
+            y con gusto coordinamos tu ofrenda. ¡Gracias por tu apoyo!
           </div>
         )}
 
@@ -87,8 +94,13 @@ export default function DonarClient() {
 
       <p className="mt-8 text-[15px] leading-relaxed text-muted">
         ¿Prefieres donar por transferencia o apoyar de otra forma?{" "}
-        <span className="font-semibold text-ink">Contáctanos</span> y con gusto te
-        orientamos.
+        <a
+          href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Donar por transferencia")}`}
+          className="font-semibold text-ink underline-offset-2 hover:text-accent hover:underline"
+        >
+          Contáctanos
+        </a>{" "}
+        y con gusto te orientamos.
       </p>
     </main>
   );

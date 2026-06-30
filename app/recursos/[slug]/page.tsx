@@ -28,7 +28,8 @@ export async function generateMetadata({
       title: `${resource.title} · SIGUE`,
       description: resource.desc,
       path: `/recursos/${resource.slug}`,
-      image: `/og/recursos/${resource.slug}.png`,
+      // La tarjeta OG se genera dinámicamente en opengraph-image.tsx.
+      image: null,
     }),
   };
 }

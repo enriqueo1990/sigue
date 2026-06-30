@@ -3,6 +3,7 @@ import type { Resource } from "./resources";
 
 export const SITE_URL = "https://siguerecursos.com";
 export const SITE_NAME = "SIGUE";
+export const CONTACT_EMAIL = "enrique.o1990@gmail.com";
 export const SITE_DESCRIPTION =
   "Libros cortos, guías de discipulado y estudios bíblicos gratuitos en PDF, pensados para grupos pequeños y la iglesia local.";
 
@@ -22,9 +23,17 @@ export function socialMeta({
   title: string;
   description: string;
   path: string;
-  image?: string;
+  // `null` omite la imagen explícita para que la convención de archivo
+  // (opengraph-image / twitter-image) genere la tarjeta del segmento.
+  image?: string | null;
 }): Pick<Metadata, "alternates" | "openGraph" | "twitter"> {
-  const images = [{ url: image, width: 1200, height: 630, alt: title }];
+  const imageMeta =
+    image === null
+      ? {}
+      : {
+          openGraph: { images: [{ url: image, width: 1200, height: 630, alt: title }] },
+          twitter: { images: [image] },
+        };
   return {
     alternates: { canonical: path },
     openGraph: {
@@ -34,13 +43,13 @@ export function socialMeta({
       url: path,
       title,
       description,
-      images,
+      ...imageMeta.openGraph,
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: [image],
+      ...imageMeta.twitter,
     },
   };
 }
