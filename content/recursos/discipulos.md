@@ -6,7 +6,7 @@ typeLabel: "Estudio bíblico"
 accent: "#A6802F"
 cover: "/covers/cover-discipulos.png"
 pdf: "/pdfs/discipulos-de-cristo.pdf"
-pages: 24
+pages: 19
 category: "Estudio bíblico"
 order: 2
 desc: "Cinco estudios para descubrir qué significa seguir a Jesús y ser formados como sus discípulos."

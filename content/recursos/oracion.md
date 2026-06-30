@@ -6,7 +6,7 @@ typeLabel: "Estudio bíblico"
 accent: "#B23A0E"
 cover: "/covers/cover-oracion.png"
 pdf: "/pdfs/vida-de-oracion.pdf"
-pages: 24
+pages: 18
 category: "Estudio bíblico"
 order: 3
 desc: "Cinco estudios para cultivar una vida de oración constante, bíblica y centrada en el evangelio."

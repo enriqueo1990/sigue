@@ -6,7 +6,7 @@ typeLabel: "Estudio bíblico"
 accent: "#1187A8"
 cover: "/covers/cover-prioridades.png"
 pdf: "/pdfs/prioridades.pdf"
-pages: 24
+pages: 18
 category: "Estudio bíblico"
 order: 4
 desc: "Cinco estudios sobre el corazón, el tiempo y el tesoro: buscar primero el reino de Dios."

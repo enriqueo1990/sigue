@@ -8,7 +8,7 @@ accent: "#C2462F"
 cover: "/covers/cover-trabajo-evangelio.png"
 pdf: "/pdfs/trabajo-y-evangelio.pdf"
 epub: "/epub/trabajo-y-evangelio.epub"
-pages: 48
+pages: 38
 category: "Libro corto"
 featured: true
 order: 1
